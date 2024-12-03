@@ -1,1 +1,28 @@
-aW1wb3J0IEZvdW5kYXRpb24KCmNsYXNzIFVzZXJTZXNzaW9uOiBPYnNlcnZhYmxlT2JqZWN0IHsKICAgIEBQdWJsaXNoZWQgdmFyIGlzQXV0aGVudGljYXRlZCA9IGZhbHNlCiAgICBAUHVibGlzaGVkIHZhciBjdXJyZW50VXNlcjogVXNlcj8KICAgIApzdHJ1Y3QgVXNlcjogQ29kYWJsZSB7CiAgICAgICAgbGV0IGlkOiBTdHJpbmcKICAgICAgICBsZXQgdXNlcm5hbWU6IFN0cmluZwogICAgICAgIGxldCBlbWFpbDogU3RyaW5nCiAgICB9CiAgICAKICAgIGZ1bmMgc2lnbkluKHVzZXJuYW1lOiBTdHJpbmcsIHBhc3N3b3JkOiBTdHJpbmcpIGFzeW5jIHRocm93cyB7CiAgICAgICAgLy8gVE9ETzogSW1wbGVtZW50IGFjdHVhbCBhdXRoZW50aWNhdGlvbgogICAgICAgIC8vIFRoaXMgaXMgYSBwbGFjZWhvbGRlciBmb3IgZGVtb25zdHJhdGlvbgogICAgICAgIHNlbGYuY3VycmVudFVzZXIgPSBVc2VyKAogICAgICAgICAgICBpZDogVVVJRCgpLnV1aWRTdHJpbmcsCiAgICAgICAgICAgIHVzZXJuYW1lOiB1c2VybmFtZSwKICAgICAgICAgICAgZW1haWw6ICJcKHVzZXJuYW1lKUBleGFtcGxlLmNvbSIKICAgICAgICApCiAgICAgICAgc2VsZi5pc0F1dGhlbnRpY2F0ZWQgPSB0cnVlCiAgICB9CiAgICAKICAgIGZ1bmMgc2lnbk91dCgpIHsKICAgICAgICBzZWxmLmN1cnJlbnRVc2VyID0gbmlsCiAgICAgICAgc2VsZi5pc0F1dGhlbnRpY2F0ZWQgPSBmYWxzZQogICAgfQp9Cg==
+import Foundation
+
+class UserSession: ObservableObject {
+    @Published var isAuthenticated = false
+    @Published var currentUser: User?
+    
+    struct User: Codable {
+        let id: String
+        let username: String
+        let email: String
+    }
+    
+    func signIn(username: String, password: String) async throws {
+        // TODO: Implement actual authentication
+        // This is a placeholder for demonstration
+        self.currentUser = User(
+            id: UUID().uuidString,
+            username: username,
+            email: "\(username)@example.com"
+        )
+        self.isAuthenticated = true
+    }
+    
+    func signOut() {
+        self.currentUser = nil
+        self.isAuthenticated = false
+    }
+}
